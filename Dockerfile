@@ -1,6 +1,8 @@
 # Base Image
 FROM node:8
-RUN apt-get update && \
-    apt-get install -y libxtst6 libnss3 libXss1 libatk-bridge2.0-0 libgtk-3-0 && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+RUN apt-get update -y \
+    && apt-get upgrade -y \
+    && apt-get install libxss1 libappindicator1 libindicator7 -y \
+    && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
+    && dpkg -i google-chrome*.deb -y \
+    && apt-get install -f -y \
